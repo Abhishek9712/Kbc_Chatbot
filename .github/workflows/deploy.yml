@@ -3,8 +3,8 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - master  # or master, depending on your default branch
-  workflow_dispatch:  # Allows manual triggering
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -14,26 +14,45 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Debug - Check secrets
+        run: |
+          echo "EC2_HOST is set: ${{ secrets.EC2_HOST != '' }}"
+          echo "EC2_USERNAME is set: ${{ secrets.EC2_USERNAME != '' }}"
+          echo "EC2_SSH_KEY is set: ${{ secrets.EC2_SSH_KEY != '' }}"
+
       - name: Deploy to EC2
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
           EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
+          # Verify variables are set
+          if [ -z "$EC2_HOST" ] || [ -z "$EC2_USERNAME" ] || [ -z "$EC2_SSH_KEY" ]; then
+            echo "Error: One or more secrets are not set properly"
+            exit 1
+          fi
+          
           # Setup SSH
           mkdir -p ~/.ssh
           echo "$EC2_SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+          
+          # Add EC2 host to known_hosts (with error handling)
+          ssh-keyscan -H "$EC2_HOST" >> ~/.ssh/known_hosts 2>&1 || {
+            echo "ssh-keyscan failed, trying alternative method..."
+            ssh-keyscan "$EC2_HOST" >> ~/.ssh/known_hosts 2>&1
+          }
+          
+          # Test SSH connection
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 "$EC2_USERNAME@$EC2_HOST" "echo 'SSH connection successful'"
           
           # Deploy
-          ssh -i ~/.ssh/deploy_key $EC2_USERNAME@$EC2_HOST << 'ENDSSH'
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no "$EC2_USERNAME@$EC2_HOST" << 'ENDSSH'
             set -e
             cd ~/Kbc_Chatbot
             
             # Pull latest code
-            git pull origin master
+            git pull origin main
             
             # Activate virtual environment
             source venv/bin/activate
@@ -41,12 +60,9 @@ jobs:
             # Install/update dependencies
             pip install -r requirements.txt
             
-            # Update .env file
-            echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" > .env
-            
-            # Restart the application
-            pkill -f "chainlit run" || true
-            nohup chainlit run app.py --host 0.0.0.0 --port 8000 > ~/chainlit.log 2>&1 &
+            # Restart the application using PM2
+            pm2 restart kbc-chatbot || pm2 start ecosystem.config.js
+            pm2 save
             
             echo "Deployment completed successfully!"
           ENDSSH
