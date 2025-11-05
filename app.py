@@ -11,15 +11,11 @@ load_dotenv()
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY"),
-    default_headers={
-        "HTTP-Referer": "http://localhost:8001",
-        "X-Title": "KBC Chatbot"
-    }
 )
 
 tts = ElevenLabs(api_key=os.getenv("ELEVEN_API_KEY"))
 
-VOICE_ID = "1tyCkDKmBd1gCvRcimhT"
+VOICE_ID = "w09cTDhY0QowONlKenzM"
 
 
 def kbc_response_format(data):
@@ -66,8 +62,7 @@ def ask_kbc_bot(user_input: str) -> str:
     f"उत्तर अधिकतम 2 पंक्तियों में हो। "
     f"कोई अंग्रेज़ी शब्द न लिखें। "
     f"उत्तर केवल function_call arguments में दें।"
-),
-
+    ),
         tools=tools
     )
 
@@ -88,7 +83,6 @@ async def start():
 अपना सवाल पूछिए और कंप्यूटर जी का जवाब सुनिए!
     """).send()
 
-    cl.user_session.set("conversation_count", 0)
 
 @cl.on_message
 async def main(message: cl.Message):

@@ -1,0 +1,233 @@
+/* KBC Theme - Purple and Gold */
+
+:root {
+    --kbc-purple: #4a148c;
+    --kbc-purple-light: #6a1b9a;
+    --kbc-purple-dark: #38006b;
+    --kbc-gold: #ffd700;
+    --kbc-gold-dark: #ffb300;
+    --kbc-bg: #1a0933;
+    --kbc-bg-light: #2d1b4e;
+}
+
+/* Main background with gradient */
+body {
+    background: linear-gradient(135deg, var(--kbc-bg) 0%, var(--kbc-purple-dark) 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header styling */
+header {
+    background: linear-gradient(90deg, var(--kbc-purple-dark) 0%, var(--kbc-purple) 100%);
+    border-bottom: 3px solid var(--kbc-gold);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Assistant name styling */
+header h1, header .app-name {
+    color: var(--kbc-gold) !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Sidebar styling */
+aside, .sidebar {
+    background: linear-gradient(180deg, var(--kbc-purple-dark) 0%, var(--kbc-bg) 100%);
+    border-right: 2px solid var(--kbc-purple-light);
+}
+
+/* Chat container */
+.chat-container, main {
+    background: var(--kbc-bg-light);
+}
+
+/* Message bubbles - User messages */
+.user-message, .message.user {
+    background: linear-gradient(135deg, var(--kbc-gold-dark) 0%, var(--kbc-gold) 100%);
+    color: var(--kbc-purple-dark);
+    border-radius: 15px;
+    padding: 12px 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Message bubbles - Assistant messages */
+.assistant-message, .message.assistant {
+    background: linear-gradient(135deg, var(--kbc-purple) 0%, var(--kbc-purple-light) 100%);
+    color: #ffffff;
+    border-radius: 15px;
+    padding: 12px 18px;
+    border: 2px solid var(--kbc-gold);
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.5);
+}
+
+/* Input area */
+.input-container, textarea, input[type="text"] {
+    background: var(--kbc-bg-light);
+    border: 2px solid var(--kbc-purple-light);
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.input-container:focus-within, textarea:focus, input[type="text"]:focus {
+    border-color: var(--kbc-gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Buttons */
+button, .button {
+    background: linear-gradient(135deg, var(--kbc-gold-dark) 0%, var(--kbc-gold) 100%);
+    color: var(--kbc-purple-dark);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+button:hover, .button:hover {
+    background: linear-gradient(135deg, var(--kbc-gold) 0%, var(--kbc-gold-dark) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Send button special styling */
+.send-button {
+    background: linear-gradient(135deg, var(--kbc-purple) 0%, var(--kbc-purple-light) 100%);
+    color: var(--kbc-gold);
+    border: 2px solid var(--kbc-gold);
+}
+
+.send-button:hover {
+    background: linear-gradient(135deg, var(--kbc-purple-light) 0%, var(--kbc-purple) 100%);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--kbc-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--kbc-purple) 0%, var(--kbc-gold) 100%);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--kbc-gold) 0%, var(--kbc-purple) 100%);
+}
+
+/* Thread/conversation items in sidebar */
+.thread-item, .conversation-item {
+    background: rgba(106, 27, 154, 0.3);
+    border-left: 3px solid var(--kbc-gold);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.thread-item:hover, .conversation-item:hover {
+    background: rgba(106, 27, 154, 0.5);
+    border-left-width: 5px;
+}
+
+/* Active thread */
+.thread-item.active, .conversation-item.active {
+    background: linear-gradient(90deg, var(--kbc-purple) 0%, var(--kbc-purple-light) 100%);
+    border-left: 5px solid var(--kbc-gold);
+}
+
+/* Loading indicator */
+.loading, .spinner {
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-top: 3px solid #000000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Alert/notification styling */
+.alert, .notification {
+    background: linear-gradient(135deg, var(--kbc-purple) 0%, var(--kbc-purple-light) 100%);
+    border: 2px solid var(--kbc-gold);
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Code blocks */
+pre, code {
+    background: var(--kbc-bg);
+    border: 1px solid var(--kbc-purple-light);
+    border-radius: 5px;
+}
+
+/* Links */
+a {
+    color: var(--kbc-gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--kbc-gold-dark);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Avatar styling */
+.avatar {
+    border: 2px solid var(--kbc-gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+/* Special KBC question styling */
+.kbc-question {
+    background: linear-gradient(135deg, var(--kbc-purple-dark) 0%, var(--kbc-purple) 100%);
+    border: 3px solid var(--kbc-gold);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+}
+
+/* Option buttons (A, B, C, D) */
+.kbc-option {
+    background: rgba(106, 27, 154, 0.5);
+    border: 2px solid var(--kbc-gold);
+    color: #ffffff;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.kbc-option:hover {
+    background: linear-gradient(90deg, var(--kbc-purple) 0%, var(--kbc-purple-light) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Prize money indicator */
+.prize-money {
+    background: linear-gradient(135deg, var(--kbc-gold) 0%, var(--kbc-gold-dark) 100%);
+    color: var(--kbc-purple-dark);
+    padding: 15px 25px;
+    border-radius: 20px;
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+    margin: 10px 0;
+}
