@@ -1,14 +1,18 @@
-# Welcome to Chainlit! 🚀🤖
+KBC Voice ChatBot — Ask Anything, Get Bachchan-Style Answers! 
 
-Hi there, Developer! 👋 We're excited to have you on board. Chainlit is a powerful tool designed to help you prototype, debug and share applications built on top of LLMs.
+Welcome! This is a smart & dramatic AI chatbot inspired by the legendary voice and suspense of Kaun Banega Crorepati.
 
-## Useful Links 🔗
+Just ask any question in pure Hindi, and listen as the bot replies in a powerful, deep and cinematic tone — “Bilkul sahi jawab!” 
 
-- **Documentation:** Get started with our comprehensive [Chainlit Documentation](https://docs.chainlit.io) 📚
-- **Discord Community:** Join our friendly [Chainlit Discord](https://discord.gg/k73SQ3FyUh) to ask questions, share your projects, and connect with other developers! 💬
+Powered by AI Voice
 
-We can't wait to see what you create with Chainlit! Happy coding! 💻😊
+Every response is converted into audio so you feel the KBC experience as if the Quiz Master himself is answering you!
 
-## Welcome screen
+What You Can Do Here
 
-To modify the welcome screen, edit the `chainlit.md` file at the root of your project. If you do not want a welcome screen, just leave this file empty.
+✔ Ask general knowledge questions
+✔ Ask about science, history, films, sports — anything!
+✔ Enjoy Bachchan-style pauses & suspense 
+✔ Listen to AI voice replies instantly
+
+“तो चलिए शुरू करते हैं… आपका अगला सवाल!” 

@@ -8,6 +8,8 @@
     --kbc-gold-dark: #ffb300;
     --kbc-bg: #1a0933;
     --kbc-bg-light: #2d1b4e;
+    --kbc-sidebar-bg: #0b0f19;
+    --kbc-text: #ffffff;
 }
 
 /* Main background with gradient */
@@ -230,4 +232,15 @@ a:hover {
     text-align: center;
     box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
     margin: 10px 0;
+}
+
+/* generic targeting for sidebar/readme */
+[data-testid="readme-panel"], .readme, .sidebar {
+  background: var(--kbc-sidebar-bg) !important;
+  color: var(--kbc-text) !important;
+}
+
+/* title / headings in README */
+[data-testid="readme-panel"] h1, [data-testid="readme-panel"] h2 {
+  color: var(--kbc-gold) !important;
 }
