@@ -40,7 +40,7 @@ def speak_like_bachchan(text: str) -> str:
 def ask_kbc_bot(user_input: str) -> str:
 
     response = client.chat.completions.create(
-        model="openai/gpt-4o",  
+        model="openai/gpt-oss-20b:free",
         messages=[
             {
                 "role": "system",
@@ -59,7 +59,7 @@ def ask_kbc_bot(user_input: str) -> str:
             }
         ],
         response_format={"type": "json_object"},
-        max_tokens=300
+        max_tokens=800
     )
 
     message = response.choices[0].message
