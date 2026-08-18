@@ -15,7 +15,7 @@ client = OpenAI(
 
 tts = ElevenLabs(api_key=os.getenv("ELEVEN_API_KEY"))
 
-VOICE_ID = "w09cTDhY0QowONlKenzM"
+VOICE_ID = "RZnKqPqwisAlxlJEUEhd"
 
 def kbc_response_format(data):
     answer = data.get("answer_text", "")
